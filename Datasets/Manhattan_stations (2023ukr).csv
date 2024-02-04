@@ -11,7 +11,7 @@ station id,station name,station latitude,station longitude
 150,E 2 St & Avenue C,40.7208736,-73.98085795
 151,Cleveland Pl & Spring St,40.7218158,-73.99720307
 152,Warren St & Church St,40.71473993,-74.00910627
-153,E 40 St & 5 Ave,40.752062307,-73.9816324043
+153,E 40 St & 5 Ave,40.75206231,-73.9816324
 160,E 37 St & Lexington Ave,40.748238,-73.978311
 161,LaGuardia Pl & W 3 St,40.72917025,-73.99810231
 164,E 47 St & 2 Ave,40.75323098,-73.97032517
@@ -24,7 +24,7 @@ station id,station name,station latitude,station longitude
 223,W 13 St & 7 Ave,40.73781509,-73.99994661
 224,Spruce St & Nassau St,40.71146364,-74.00552427
 225,W 14 St & The High Line,40.74195138,-74.00803013
-228,E 48 St & 3 Ave,40.7546011026,-73.971878855
+228,E 48 St & 3 Ave,40.7546011,-73.97187886
 229,Great Jones St,40.72743423,-73.99379025
 236,St Marks Pl & 2 Ave,40.7284186,-73.98713956
 237,E 11 St & 2 Ave,40.73047309,-73.98672378
@@ -49,7 +49,7 @@ station id,station name,station latitude,station longitude
 276,Duane St & Greenwich St,40.71748752,-74.0104554
 280,E 10 St & 5 Ave,40.73331967,-73.99510132
 281,Grand Army Plaza & Central Park S,40.7643971,-73.97371465
-284,Greenwich Ave & 8 Ave,40.7390169121,-74.0026376103
+284,Greenwich Ave & 8 Ave,40.73901691,-74.00263761
 285,Broadway & E 14 St,40.73454567,-73.99074142
 290,2 Ave & E 58 St,40.76020258,-73.96478473
 291,Madison St & Montgomery St,40.713126,-73.984844
@@ -122,7 +122,7 @@ station id,station name,station latitude,station longitude
 385,E 55 St & 2 Ave,40.75797322,-73.96603308
 386,Centre St & Worth St,40.71494807,-74.00234482
 387,Centre St & Chambers St,40.71273266,-74.0046073
-388,W 26 St & 10 Ave,40.749717753,-74.002950346
+388,W 26 St & 10 Ave,40.74971775,-74.00295035
 393,E 5 St & Avenue C,40.72299208,-73.97995466
 394,E 9 St & Avenue C,40.72521311,-73.97768752
 400,Pitt St & Stanton St,40.71926081,-73.98178024
