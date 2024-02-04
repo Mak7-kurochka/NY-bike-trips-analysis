@@ -95,9 +95,11 @@ avg_weekends = np.mean(weekends)
 count_weekdays = df_friday.shape[0]
 count_weekend = len(weekends)
 
-ffg.create_bar(['Weekdays', 'Weekend'], [count_weekdays, count_weekend], 'Part of the week', 'Number of trips', 'Number of trips by part of the week')
+ffg.create_bar(['Weekdays', 'Weekend'], [count_weekdays, count_weekend],\
+                'Part of the week', 'Number of trips', 'Number of trips by part of the week')
 
-ffg.create_bar(['Weekdays', 'Weekend'], [avg_weekdays, avg_weekends], 'Part of the week', 'Duration', 'Average trip duration by part of the week')
+ffg.create_bar(['Weekdays', 'Weekend'], [avg_weekdays, avg_weekends],\
+                'Part of the week', 'Duration', 'Average trip duration by part of the week')
 
 
 
@@ -133,6 +135,95 @@ def avg_tripduration(llst):
 
     return [[avg_night, avg_morning, avg_midday, avg_evening], [len(night), len(morning), len(midday), len(evening)]]
 
-ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df)[1], 'Part of day', 'Number', 'Number of trips by part of the day')
+ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df)[1],\
+                'Part of day', 'Number', 'Number of trips by part of the day')
 
-ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df)[0], 'Part of day', 'Time', 'Average trip time by part of the day')
+ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df)[0],\
+                'Part of day', 'Time', 'Average trip time by part of the day')
+
+
+
+#Let's create a 'Number of trips by different days of the week' graph
+ffg.create_bar(['Friday', 'Saturday', 'Sunday'], [df_friday.shape[0], df_saturday.shape[0], df_sunday.shape[0]],'Day of the week','Number','Number of trips by different days of the week')
+
+#Let's create a 'Average trip duration by different days of the week' graph
+ffg.create_bar(['Friday', 'Saturday', 'Sunday'], [df_friday['tripduration'].mean(),df_saturday['tripduration'].mean(),df_sunday['tripduration'].mean()],\
+               'Day of the week', 'Time', 'Average trip duration by different days of the week')
+
+
+#Let's create a 'Average trip duration by part of the day' graph for each of days we have
+
+#Friday#
+ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df_friday)[0],\
+               'Part of day','Time[h]','Average trip duration by part of the day at Friday')
+
+#Saturday#
+ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df_saturday)[0],\
+               'Part of day','Time[h]','Average trip duration by part of day at Saturday')
+
+#Sunday#
+ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df_sunday)[0],\
+               'Part of day','Time[h]','Average trip duration by part of day at Sunday')
+
+
+
+#I defined this function to describe a specific inference about bike usage by customer gender
+def tripduration_by_gender(llst):
+    men = []
+    women = []
+    for i in range(llst.shape[0]):
+        if llst['gender'][i] == 'Male':
+            men.append(llst.iloc[i]['tripduration'])
+        elif llst['gender'][i] == 'Female':
+            women.append(llst.iloc[i]['tripduration'])
+    
+    avg_men = np.average(men)
+    avg_women = np.average(women)
+
+    return [avg_men, avg_women]
+
+ffg.create_bar(['Male', 'Female'], tripduration_by_gender(df),title="Average trip duration by gender")
+
+
+#Last part of my analysis was a calculatinf numbers of cases when the station was the starting and ending station
+#So, to calculate this was wrotten the following lines:
+#Determining  necessary variables
+friday_end = 0
+friday_start = 0
+saturday_end = 0
+saturday_start = 0
+sunday_end = 0
+sunday_start = 0
+
+#Starts for lopp that counts the number I need
+for i in range(df.shape[0]):
+    if df['start date'][i] == friday:
+        if df['end station id'][i] == 388:
+            friday_end += 1
+        else:
+            friday_start += 1
+    elif df['start date'][i] == saturday:
+        if df['end station id'][i] == 388:
+            saturday_end += 1
+        else:
+            saturday_start += 1
+    else:
+        if df['end station id'][i] == 388:
+            sunday_end += 1
+        else:
+            sunday_start += 1
+
+
+X = ['Friday', 'Saturday', 'Sunday']
+X_axis = np.arange(len(X))
+
+plt.bar(X_axis - 0.2, [friday_start, saturday_start, sunday_start], 0.4, label='Starting')
+plt.bar(X_axis + 0.2, [friday_end, saturday_end, sunday_end], 0.4, label='Ending')
+plt.plot([friday_start+friday_end, saturday_start+saturday_end, sunday_start+sunday_end],label='Sum')
+
+plt.title('Number of cases when the station was the starting and ending station')
+plt.xticks(X_axis, X)
+plt.xlabel('Day')
+plt.ylabel('Number')
+plt.legend()
+plt.show()
