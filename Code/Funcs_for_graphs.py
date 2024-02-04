@@ -20,7 +20,7 @@ def create_hist(df, data, ylabel, xlabel, title=None):
     plt.hist(data, bins=k, edgecolor='w')
     plt.show()
 
-def create_bar(names, data, xlabel, ylabel, title):
+def create_bar(names, data, xlabel=None, ylabel=None, title=None):
     
     plt.bar(names, data)
     plt.xlabel(xlabel)
