@@ -1,6 +1,5 @@
 import pandas as pd
 from matplotlib import pyplot as plt
-import math
 import numpy as np
 from datetime import datetime
 import Funcs_for_graphs as ffg
@@ -28,7 +27,7 @@ df['tripduration'] = list(x/3600 for x in df['tripduration'])
 
 #Let's build the gender pie plot using Matplotlib module
 df['gender'] = df['gender'].replace({1, 2, 0}, {'Male', 'Female', "Unrecognised"})
-genders = ['Unrecognised', 'Female', 'Male']
+genders = ['Male', 'Unrecognized', 'Female']
 genders_c = list(df.value_counts(df['gender']))
 ffg.create_pie(genders_c, 'Gender of customers', genders)
 
@@ -38,15 +37,6 @@ ffg.create_pie(genders_c, 'Gender of customers', genders)
 usertype = ['Subcriber', 'Customer']
 usertype_c = list(df.value_counts(df['usertype']))
 ffg.create_pie(usertype_c, 'User Type', usertype)
-
-
-
-#Check trip duration distribution
-mean_td = df['tripduration'].mean()
-std_td = df['tripduration'].std()
-variance_td = df['tripduration'].var()
-
-ffg.create_hist(df, df['tripduration'], 'Number of people','Trip duration(in hours)',  'Trip duration[1 = 60 minutes]')
 
 
 
@@ -69,6 +59,14 @@ variance_age = np.var(ages)
 
 ffg.create_hist(df, ages, 'Number of people', 'Age of customer')
 
+
+
+#Check trip duration distribution
+mean_td = df['tripduration'].mean()
+std_td = df['tripduration'].std()
+variance_td = df['tripduration'].var()
+
+ffg.create_hist(df, df['tripduration'], 'Number of people','Trip duration(in hours)',  'Trip duration[1 = 60 minutes]')
 
 
 #To sort data by day, I need to convert data to the datetime type
@@ -227,3 +225,21 @@ plt.xlabel('Day')
 plt.ylabel('Number')
 plt.legend()
 plt.show()
+
+
+def helper(func):
+    def wrapper(avg,std,var):
+        print('\n********')
+        func(avg,std,var)
+        print('********')
+    return wrapper
+
+@helper
+def print_func(avg,std,var):
+    print(f'Average age of users:{avg}\nStandart deviation:{std}\nVariance:{var}')
+
+
+print('The data that was collected during the project\n\nFor age of users:')
+print_func(mean_age,std_age,variance_age)
+print('For trip duration:')
+print_func(mean_td,std_td,variance_td)
