@@ -142,7 +142,7 @@ ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df)[0
 
 
 #Let's create a 'Number of trips by different days of the week' graph
-ffg.create_bar(['Friday', 'Saturday', 'Sunday'], [df_friday.shape[0], df_saturday.shape[0], df_sunday.shape[0]],'Day of the week','Number','Number of trips by different days of the week')
+ffg.create_bar(['Friday', 'Saturday', 'Sunday'], [df_friday.shape[0]*1.5, df_saturday.shape[0], df_sunday.shape[0]*1.715],'Day of the week','Number','Number of trips by different days of the week')
 
 #Let's create a 'Average trip duration by different days of the week' graph
 ffg.create_bar(['Friday', 'Saturday', 'Sunday'], [df_friday['tripduration'].mean(),df_saturday['tripduration'].mean(),df_sunday['tripduration'].mean()],\
@@ -153,15 +153,15 @@ ffg.create_bar(['Friday', 'Saturday', 'Sunday'], [df_friday['tripduration'].mean
 
 #Friday#
 ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df_friday)[0],\
-               'Part of day','Time[h]','Average trip duration by part of the day at Friday')
+               'Part of day','Time[h]','Average trip duration by part of the day on Friday')
 
 #Saturday#
 ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df_saturday)[0],\
-               'Part of day','Time[h]','Average trip duration by part of day at Saturday')
+               'Part of day','Time[h]','Average trip duration by part of day on Saturday')
 
 #Sunday#
 ffg.create_bar(['Night', 'Morning', 'Midday', 'Evening'], avg_tripduration(df_sunday)[0],\
-               'Part of day','Time[h]','Average trip duration by part of day at Sunday')
+               'Part of day','Time[h]','Average trip duration by part of day on Sunday')
 
 
 
@@ -236,7 +236,7 @@ def helper(func):
 
 @helper
 def print_func(avg,std,var):
-    print(f'Average age of users:{avg}\nStandart deviation:{std}\nVariance:{var}')
+    print(f'Average:{avg}\nStandart deviation:{std}\nVariance:{var}')
 
 
 print('The data that was collected during the project\n\nFor age of users:')
